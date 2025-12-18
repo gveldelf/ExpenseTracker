@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Финансовый трекер</string>
+
+    <!-- Main -->
+    <string name="balance">Баланс: %s</string>
+    <string name="add_income">Добавить доход</string>
+    <string name="add_expense">Добавить расход</string>
+    <string name="transactions">Транзакции</string>
+    <string name="settings">Настройки</string>
+
+    <!-- Common -->
+    <string name="type">Tип</string>
+    <string name="amount">Сумма</string>
+    <string name="category">Категория</string>
+    <string name="expenses_by_category">Расходы по категориям</string>
+    <string name="date">Дата</string>
+    <string name="description">Описание</string>
+
+    <!-- Types -->
+    <string name="type_income">Доход</string>
+    <string name="type_expense">Расход</string>
+
+    <!-- Actions -->
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+
+    <!-- Settings -->
+    <string name="language">Язык</string>
+    <string name="currency">Валюта</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+
+    <!-- Currency symbols -->
+    <string name="rub">₽</string>
+    <string name="usd">$</string>
+    <string name="eur">€</string>
+
+    <!-- Categories -->
+    <string name="category_food">Еда</string>
+    <string name="category_transport">Транспорт</string>
+    <string name="category_entertainment">Развлечения</string>
+    <string name="category_salary">Зарплата</string>
+    <string name="category_other">Другое</string>
+
+    <!-- Types for spinner -->
+    <string-array name="types">
+        <item>Доход</item>
+        <item>Расход</item>
+    </string-array>
+</resources>

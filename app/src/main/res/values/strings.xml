@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Finance Tracker</string>
+
+    <!-- Main -->
+    <string name="balance">Balance: %s</string>
+    <string name="add_income">Add Income</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="transactions">Transactions</string>
+    <string name="settings">Settings</string>
+
+    <!-- Common -->
+    <string name="amount">Amount</string>
+    <string name="category">Category</string>
+    <string name="expenses_by_category">Expenses by Category</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+
+    <!-- Types -->
+    <string name="type_income">Income</string>
+    <string name="type_expense">Expense</string>
+
+    <!-- Actions -->
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+
+    <!-- Settings -->
+    <string name="language">Language</string>
+    <string name="currency">Currency</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+
+    <!-- Currency codes -->
+    <string name="rub">RUB</string>
+    <string name="usd">USD</string>
+    <string name="eur">EUR</string>
+    <string name="type">Type</string>
+    <!-- Category labels -->
+    <string name="category_food">Food</string>
+    <string name="category_transport">Transport</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_salary">Salary</string>
+    <string name="category_other">Other</string>
+
+    <!-- Category KEYS (for DB) -->
+    <string-array name="category_keys">
+        <item>food</item>
+        <item>transport</item>
+        <item>entertainment</item>
+        <item>salary</item>
+        <item>other</item>
+    </string-array>
+
+    <!-- Category LABELS (for UI) -->
+    <string-array name="category_labels">
+        <item>@string/category_food</item>
+        <item>@string/category_transport</item>
+        <item>@string/category_entertainment</item>
+        <item>@string/category_salary</item>
+        <item>@string/category_other</item>
+    </string-array>
+
+    <!-- Types for spinner -->
+    <string-array name="types">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+</resources>
