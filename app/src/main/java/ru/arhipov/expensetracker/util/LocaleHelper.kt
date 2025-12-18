@@ -20,9 +20,17 @@ object LocaleHelper {
         prefs.edit().putString(KEY_LANG, lang).apply()
     }
 
+    // This function is for Application context or for immediate change and restart
     fun applyLocale(context: Context): Context {
         val lang = getSavedLanguage(context)
         return updateContextLocale(context, Locale(if (lang.isNullOrEmpty()) Locale.getDefault().language else lang))
+    }
+
+    // This function is for wrapping Activity context in attachBaseContext
+    fun wrapContext(context: Context): Context {
+        val lang = getSavedLanguage(context)
+        val locale = Locale(if (lang.isNullOrEmpty()) Locale.getDefault().language else lang)
+        return updateContextLocale(context, locale)
     }
 
     private fun updateContextLocale(context: Context, locale: Locale): Context {
@@ -31,8 +39,7 @@ object LocaleHelper {
         val conf = Configuration(res.configuration)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             conf.setLocale(locale)
-            val ctx = context.createConfigurationContext(conf)
-            return ctx
+            return context.createConfigurationContext(conf)
         } else {
             conf.locale = locale
             res.updateConfiguration(conf, res.displayMetrics)

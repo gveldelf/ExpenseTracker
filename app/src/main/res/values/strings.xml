@@ -23,6 +23,7 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="no_description">No description</string>
 
     <!-- Settings -->
     <string name="language">Language</string>

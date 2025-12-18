@@ -10,7 +10,14 @@ import ru.arhipov.expensetracker.ui.adapters.TransactionsAdapter
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import android.content.Intent
 
+import android.content.Context
+import ru.arhipov.expensetracker.util.LocaleHelper
+
 class TransactionsActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleHelper.wrapContext(it) })
+    }
 
     private lateinit var binding: ActivityTransactionsBinding
     private lateinit var viewModel: TransactionViewModel

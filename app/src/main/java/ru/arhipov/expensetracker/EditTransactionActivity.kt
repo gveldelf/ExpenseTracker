@@ -16,7 +16,14 @@ import ru.arhipov.expensetracker.util.LocaleHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
+import android.content.Context
+import ru.arhipov.expensetracker.util.LocaleHelper
+
 class EditTransactionActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleHelper.wrapContext(it) })
+    }
 
     private lateinit var binding: ActivityEditTransactionBinding
     private lateinit var viewModel: TransactionViewModel
@@ -24,7 +31,6 @@ class EditTransactionActivity : AppCompatActivity() {
     private var currentTransaction: Transaction? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        LocaleHelper.applyLocale(this) // ensure language applied for UI
         super.onCreate(savedInstanceState)
         binding = ActivityEditTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)

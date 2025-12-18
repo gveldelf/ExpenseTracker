@@ -24,6 +24,7 @@
     <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
     <string name="edit">Редактировать</string>
+    <string name="no_description">Нет описания</string>
 
     <!-- Settings -->
     <string name="language">Язык</string>

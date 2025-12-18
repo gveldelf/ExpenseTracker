@@ -11,11 +11,13 @@ import ru.arhipov.expensetracker.util.LocaleHelper
 
 class SettingsActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleHelper.wrapContext(it) })
+    }
+
     private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // apply saved locale before inflating layout
-        LocaleHelper.applyLocale(this)
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
