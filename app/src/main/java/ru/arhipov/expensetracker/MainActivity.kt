@@ -15,14 +15,18 @@ import ru.arhipov.expensetracker.databinding.ActivityMainBinding
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import ru.arhipov.expensetracker.util.CurrencyUtil
 import ru.arhipov.expensetracker.util.LocaleHelper
+import android.content.Context
 
 class MainActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleHelper.wrapContext(it) })
+    }
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: TransactionViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        LocaleHelper.applyLocale(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
