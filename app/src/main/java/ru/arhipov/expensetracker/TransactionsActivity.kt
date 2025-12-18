@@ -9,7 +9,6 @@ import ru.arhipov.expensetracker.databinding.ActivityTransactionsBinding
 import ru.arhipov.expensetracker.ui.adapters.TransactionsAdapter
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import android.content.Intent
-
 import android.content.Context
 import ru.arhipov.expensetracker.util.LocaleHelper
 

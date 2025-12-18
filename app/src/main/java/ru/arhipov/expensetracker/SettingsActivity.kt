@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.arhipov.expensetracker.databinding.ActivitySettingsBinding
 import ru.arhipov.expensetracker.util.CurrencyUtil
 import ru.arhipov.expensetracker.util.LocaleHelper
+import android.content.Context
 
 class SettingsActivity : AppCompatActivity() {
 

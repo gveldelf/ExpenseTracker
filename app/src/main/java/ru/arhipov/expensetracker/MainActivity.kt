@@ -15,6 +15,7 @@ import ru.arhipov.expensetracker.databinding.ActivityMainBinding
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import ru.arhipov.expensetracker.util.CurrencyUtil
 import ru.arhipov.expensetracker.util.LocaleHelper
+import android.content.Context
 
 class MainActivity : AppCompatActivity() {
 

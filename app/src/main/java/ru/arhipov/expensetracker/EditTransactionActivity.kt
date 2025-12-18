@@ -15,9 +15,7 @@ import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import ru.arhipov.expensetracker.util.LocaleHelper
 import java.text.SimpleDateFormat
 import java.util.*
-
 import android.content.Context
-import ru.arhipov.expensetracker.util.LocaleHelper
 
 class EditTransactionActivity : AppCompatActivity() {
 
