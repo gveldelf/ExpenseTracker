@@ -9,7 +9,6 @@ import ru.arhipov.expensetracker.data.dao.TransactionDao
 import ru.arhipov.expensetracker.data.entity.Transaction
 import java.util.Date
 
-// Конвертер для java.util.Date(полчаса над этой х.... сидел, не мог ошибку найти)
 class Converters {
 
     @androidx.room.TypeConverter
