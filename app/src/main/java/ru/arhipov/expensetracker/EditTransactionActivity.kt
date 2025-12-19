@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 import android.content.Context
-import ru.arhipov.expensetracker.util.LocaleHelper
+
 
 class EditTransactionActivity : AppCompatActivity() {
 
@@ -59,7 +59,6 @@ class EditTransactionActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerType.adapter = adapter
 
-        // select default
         val defaultLabel = if (defaultType == "income") getString(R.string.type_income) else getString(R.string.type_expense)
         val pos = types.indexOfFirst { it.equals(defaultLabel, ignoreCase = true) }.coerceAtLeast(0)
         binding.spinnerType.setSelection(pos)
@@ -145,12 +144,10 @@ class EditTransactionActivity : AppCompatActivity() {
         currentTransaction = t
         runOnUiThread {
             binding.etAmount.setText(t.amount.toString())
-            // type spinner
             val types = resources.getStringArray(R.array.types)
             val typeLabel = if (t.type == "income") getString(R.string.type_income) else getString(R.string.type_expense)
             val typePos = types.indexOfFirst { it.equals(typeLabel, ignoreCase = true) }.coerceAtLeast(0)
             binding.spinnerType.setSelection(typePos)
-            // category spinner - category stored as key
             val keys = resources.getStringArray(R.array.category_keys)
             val catPos = keys.indexOf(t.category).coerceAtLeast(0)
             binding.spinnerCategory.setSelection(catPos)

@@ -3,11 +3,11 @@ package ru.arhipov.expensetracker
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import ru.arhipov.expensetracker.databinding.ActivitySettingsBinding
 import ru.arhipov.expensetracker.util.CurrencyUtil
 import ru.arhipov.expensetracker.util.LocaleHelper
+import android.content.Context // <-- Добавлен импорт
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -61,7 +61,6 @@ class SettingsActivity : AppCompatActivity() {
             val currency = binding.spinnerCurrency.selectedItem.toString()
             CurrencyUtil.setSelectedCurrency(this, currency)
 
-            // Применить locale и перезапустить activity stack, чтобы изменения применились немедленно
             LocaleHelper.applyLocale(this)
 
             val intent = Intent(this, MainActivity::class.java)

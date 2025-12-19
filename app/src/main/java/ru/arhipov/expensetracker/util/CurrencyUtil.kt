@@ -10,7 +10,7 @@ object CurrencyUtil {
     private const val PREFS = "settings"
     private const val KEY_CURRENCY = "currency"
 
-    // Примитивные курсы: из RUB -> target
+    // Примитивные курсы (захардкожены)
     private const val RATE_USD = 0.011   // 1 RUB -> 0.011 USD
     private const val RATE_EUR = 0.010
 

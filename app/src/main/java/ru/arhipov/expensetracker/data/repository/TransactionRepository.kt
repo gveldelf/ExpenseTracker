@@ -32,7 +32,7 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         val income = transactionDao.getTotalIncome() ?: 0.0
         val expense = transactionDao.getTotalExpense() ?: 0.0
         income - expense
-    }
+    } //Считать одним запросом к базе
 
     suspend fun getExpensesByCategory(): List<ExpenseByCategory> = withContext(Dispatchers.IO) {
         transactionDao.getExpensesByCategory()

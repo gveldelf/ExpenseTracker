@@ -15,6 +15,7 @@ import ru.arhipov.expensetracker.databinding.ActivityMainBinding
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import ru.arhipov.expensetracker.util.CurrencyUtil
 import ru.arhipov.expensetracker.util.LocaleHelper
+import android.content.Context
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             val expenses = viewModel.getExpensesByCategory()
 
             val entries = expenses.map {
-                // convert amount to selected currency for chart values
                 val converted = CurrencyUtil.convertFromRub(it.total, CurrencyUtil.getSelectedCurrency(this@MainActivity))
                 PieEntry(converted.toFloat(), getCategoryLabel(it.categoryKey))
             }
