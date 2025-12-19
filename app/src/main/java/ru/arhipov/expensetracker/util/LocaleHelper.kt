@@ -8,7 +8,7 @@ import java.util.Locale
 object LocaleHelper {
 
     private const val PREFS = "settings"
-    private const val KEY_LANG = "lang" // values: "ru", "en"
+    private const val KEY_LANG = "lang" 
 
     fun getSavedLanguage(context: Context): String {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
