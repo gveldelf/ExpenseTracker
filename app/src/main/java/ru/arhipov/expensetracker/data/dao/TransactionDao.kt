@@ -12,8 +12,8 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions ORDER BY date DESC")
     fun getAllTransactions(): LiveData<List<Transaction>>
 
-    @Query("SELECT * FROM transactions WHERE id = :id")
-    suspend fun getTransactionById(id: Long): Transaction?
+    @Query("SELECT * FROM transactions WHERE uid = :uid")
+    suspend fun getTransactionByUid(uid: String): Transaction?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTransaction(transaction: Transaction)
@@ -29,6 +29,16 @@ interface TransactionDao {
 
     @Query("SELECT IFNULL(SUM(amount), 0) FROM transactions WHERE type = 'expense'")
     suspend fun getTotalExpense(): Double
+
+    // Новый метод - получение баланса одним запросом
+    @Query("""
+        SELECT IFNULL(
+            SUM(CASE WHEN type = 'income' THEN amount ELSE -amount END), 
+            0
+        ) 
+        FROM transactions
+    """)
+    suspend fun getBalance(): Double
 
     @Query("""
         SELECT 

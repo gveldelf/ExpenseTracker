@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Базовые цвета из шаблона (оставил для совместимости) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Темная тема - основные цвета -->
+    <color name="colorPrimary">#90CAF9</color> <!-- Светлый синий для темной темы -->
+    <color name="colorPrimaryVariant">#42A5F5</color> <!-- Чуть темнее синий -->
+    <color name="colorSecondary">#FFD54F</color> <!-- Светлый желтый -->
+    <color name="colorSecondaryVariant">#FFC107</color> <!-- Темнее желтый -->
+    <color name="colorOnPrimary">#000000</color> <!-- Черный текст на светлом синем -->
+    <color name="colorOnSecondary">#000000</color> <!-- Черный текст на желтом -->
+
+    <!-- Фоны для темной темы -->
+    <color name="colorBackground">#121212</color> <!-- Темный фон -->
+    <color name="colorSurface">#1E1E1E</color> <!-- Поверхности (карточки и т.д.) -->
+    <color name="colorOnBackground">#FFFFFF</color> <!-- Белый текст на темном фоне -->
+    <color name="colorOnSurface">#FFFFFF</color> <!-- Белый текст на поверхностях -->
+</resources>

@@ -24,15 +24,14 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         transactionDao.deleteTransaction(transaction)
     }
 
-    suspend fun getTransaction(id: Long): Transaction? = withContext(Dispatchers.IO) {
-        transactionDao.getTransactionById(id)
+    suspend fun getTransaction(uid: String): Transaction? = withContext(Dispatchers.IO) {
+        transactionDao.getTransactionByUid(uid)
     }
 
+    // Теперь используем один запрос к базе
     suspend fun getBalance(): Double = withContext(Dispatchers.IO) {
-        val income = transactionDao.getTotalIncome() ?: 0.0
-        val expense = transactionDao.getTotalExpense() ?: 0.0
-        income - expense
-    } //Считать одним запросом к базе
+        transactionDao.getBalance()
+    }
 
     suspend fun getExpensesByCategory(): List<ExpenseByCategory> = withContext(Dispatchers.IO) {
         transactionDao.getExpensesByCategory()

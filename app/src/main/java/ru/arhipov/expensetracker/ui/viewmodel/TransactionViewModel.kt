@@ -31,8 +31,8 @@ class TransactionViewModel(
 
     suspend fun getExpensesByCategory(): List<ExpenseByCategory> = repository.getExpensesByCategory()
 
-    suspend fun getTransaction(id: Long): Transaction? {
-        return repository.getTransaction(id)
+    suspend fun getTransaction(uid: String): Transaction? {
+        return repository.getTransaction(uid)
     }
 
     fun getTransactionsByDateRange(start: Date, end: Date): LiveData<List<Transaction>> {

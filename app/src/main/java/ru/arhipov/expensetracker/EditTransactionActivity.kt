@@ -2,6 +2,8 @@ package ru.arhipov.expensetracker
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,7 @@ import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
 import ru.arhipov.expensetracker.util.LocaleHelper
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToLong
 
 import android.content.Context
 
@@ -27,7 +30,7 @@ class EditTransactionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditTransactionBinding
     private lateinit var viewModel: TransactionViewModel
-    private var transactionId: Long? = null
+    private var transactionUid: String? = null
     private var currentTransaction: Transaction? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,18 +42,43 @@ class EditTransactionActivity : AppCompatActivity() {
         val repo = TransactionRepository(db.transactionDao())
         viewModel = TransactionViewModel(repo)
 
-        transactionId = intent.getLongExtra("transactionId", -1L).takeIf { it != -1L }
+        transactionUid = intent.getStringExtra("transactionUid")
         val defaultType = intent.getStringExtra("type") ?: "expense"
 
         setupTypeSpinner(defaultType)
         setupCategorySpinner()
         setupDatePicker()
+        setupAmountInput()
         setupButtons()
 
-        transactionId?.let {
+        transactionUid?.let {
             binding.btnDelete.visibility = android.view.View.VISIBLE
             lifecycleScope.launch { loadTransaction(it) }
         }
+    }
+
+    private fun setupAmountInput() {
+        // InputFilter для ограничения ввода: максимум 2 знака после запятой
+        val decimalFilter = object : InputFilter {
+            override fun filter(
+                source: CharSequence?,
+                start: Int,
+                end: Int,
+                dest: Spanned?,
+                dstart: Int,
+                dend: Int
+            ): CharSequence? {
+                val input = (dest?.toString() ?: "") + (source?.toString() ?: "")
+
+                // Проверяем формат: цифры и одна точка/запятая
+                if (input.matches(Regex("^\\d*[.,]?\\d{0,2}$"))) {
+                    return null // разрешаем ввод
+                }
+                return "" // блокируем ввод
+            }
+        }
+
+        binding.etAmount.filters = arrayOf(decimalFilter)
     }
 
     private fun setupTypeSpinner(defaultType: String) {
@@ -100,11 +128,17 @@ class EditTransactionActivity : AppCompatActivity() {
     }
 
     private fun saveTransaction() {
-        val amount = binding.etAmount.text.toString().toDoubleOrNull()
+        val amountText = binding.etAmount.text.toString().replace(',', '.')
+        val amount = amountText.toDoubleOrNull()
+
         if (amount == null || amount <= 0.0) {
             Toast.makeText(this, getString(R.string.amount), Toast.LENGTH_SHORT).show()
             return
         }
+
+        // КРИТИЧЕСКИ ВАЖНО: Округляем до 2 знаков ПЕРЕД записью в БД
+        // Это предотвращает накопление погрешностей при суммировании
+        val roundedAmount = (amount * 100).roundToLong() / 100.0
 
         val typesArr = resources.getStringArray(R.array.types)
         val selectedTypeLabel = binding.spinnerType.selectedItem.toString()
@@ -119,8 +153,8 @@ class EditTransactionActivity : AppCompatActivity() {
         val desc = binding.etDescription.text.toString().ifEmpty { null }
 
         val tx = Transaction(
-            id = currentTransaction?.id ?: 0L,
-            amount = amount,
+            uid = currentTransaction?.uid ?: UUID.randomUUID().toString(),
+            amount = roundedAmount,
             type = typeValue,
             category = categoryKey,
             date = date,
@@ -139,11 +173,12 @@ class EditTransactionActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun loadTransaction(id: Long) {
-        val t = viewModel.getTransaction(id) ?: return
+    private suspend fun loadTransaction(uid: String) {
+        val t = viewModel.getTransaction(uid) ?: return
         currentTransaction = t
         runOnUiThread {
-            binding.etAmount.setText(t.amount.toString())
+            // Форматируем amount с 2 знаками после запятой для отображения
+            binding.etAmount.setText(String.format(Locale.US, "%.2f", t.amount))
             val types = resources.getStringArray(R.array.types)
             val typeLabel = if (t.type == "income") getString(R.string.type_income) else getString(R.string.type_expense)
             val typePos = types.indexOfFirst { it.equals(typeLabel, ignoreCase = true) }.coerceAtLeast(0)

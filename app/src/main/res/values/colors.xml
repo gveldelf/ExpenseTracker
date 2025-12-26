@@ -9,11 +9,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- кастомные цвета для темы (из плана) -->
-    <color name="colorPrimary">#1565C0</color>
-    <color name="colorPrimaryVariant">#0D47A1</color>
-    <color name="colorSecondary">#FFB74D</color>
-    <color name="colorSecondaryVariant">#F57C00</color>
-    <color name="colorOnPrimary">@color/black</color>
-    <color name="colorOnSecondary">@color/black</color>
+    <!-- Светлая тема - основные цвета -->
+    <color name="colorPrimary">#1565C0</color> <!-- Синий -->
+    <color name="colorPrimaryVariant">#0D47A1</color> <!-- Темнее синий -->
+    <color name="colorSecondary">#FFB74D</color> <!-- Оранжевый -->
+    <color name="colorSecondaryVariant">#F57C00</color> <!-- Темнее оранжевый -->
+    <color name="colorOnPrimary">#FFFFFF</color> <!-- Белый текст на синем -->
+    <color name="colorOnSecondary">#000000</color> <!-- Черный текст на оранжевом -->
+
+    <!-- Фоны для светлой темы -->
+    <color name="colorBackground">#FFFFFF</color> <!-- Белый фон -->
+    <color name="colorSurface">#FFFFFF</color> <!-- Белые поверхности -->
+    <color name="colorOnBackground">#000000</color> <!-- Черный текст на белом фоне -->
+    <color name="colorOnSurface">#000000</color> <!-- Черный текст на поверхностях -->
 </resources>

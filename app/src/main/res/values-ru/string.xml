@@ -2,6 +2,10 @@
     <string name="app_name">Финансовый трекер</string>
 
     <!-- Main -->
+    <string name="theme">Тема</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_system">Системная</string>
     <string name="balance">Баланс: %s</string>
     <string name="add_income">Добавить доход</string>
     <string name="add_expense">Добавить расход</string>

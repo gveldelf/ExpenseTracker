@@ -8,6 +8,7 @@ import ru.arhipov.expensetracker.data.repository.TransactionRepository
 import ru.arhipov.expensetracker.databinding.ActivityTransactionsBinding
 import ru.arhipov.expensetracker.ui.adapters.TransactionsAdapter
 import ru.arhipov.expensetracker.ui.viewmodel.TransactionViewModel
+import ru.arhipov.expensetracker.util.ThemeHelper
 import android.content.Intent
 
 import android.content.Context
@@ -24,6 +25,10 @@ class TransactionsActivity : AppCompatActivity() {
     private lateinit var adapter: TransactionsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Применяем сохраненную тему перед вызовом super.onCreate
+        val savedTheme = ThemeHelper.getSavedTheme(this)
+        ThemeHelper.applyTheme(savedTheme)
+
         super.onCreate(savedInstanceState)
         binding = ActivityTransactionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,7 +41,7 @@ class TransactionsActivity : AppCompatActivity() {
 
         adapter = TransactionsAdapter { transaction ->
             val intent = Intent(this, EditTransactionActivity::class.java).apply {
-                putExtra("transactionId", transaction.id)
+                putExtra("transactionUid", transaction.uid)
             }
             startActivity(intent)
         }
